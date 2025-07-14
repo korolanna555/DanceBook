@@ -105,8 +105,12 @@ fun HomeScreen(
                         .shadow(8.dp, RoundedCornerShape(24.dp))
                         .background(salonGreenOnPrimaryContainer, RoundedCornerShape(24.dp))
                 ) {
+                    val context = LocalContext.current
+                    val imageResId = remember {
+                        context.resources.getIdentifier("girl", "drawable", context.packageName)
+                    }
                     AsyncImage(
-                        model = "https://avatars.mds.yandex.net/get-yapic/30955/NLUmmLjsxg2qXO7S4xAy9lFGDkA-1/orig",
+                        model = imageResId,
                         contentDescription = "Аватар",
                         modifier = Modifier
                             .size(120.dp)

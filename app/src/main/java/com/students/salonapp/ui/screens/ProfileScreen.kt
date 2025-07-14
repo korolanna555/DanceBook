@@ -18,6 +18,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.students.salonapp.ui.theme.*
@@ -69,12 +70,16 @@ fun ProfileScreen(
                             .padding(16.dp),
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
+                        val context = LocalContext.current
+                        val imageResId = remember {
+                            context.resources.getIdentifier("girl", "drawable", context.packageName)
+                        }
                         AsyncImage(
-                            model = "https://avatars.mds.yandex.net/get-yapic/30955/NLUmmLjsxg2qXO7S4xAy9lFGDkA-1/orig",
+                            model = imageResId,
                             contentDescription = "Аватар",
                             modifier = Modifier
                                 .size(120.dp)
-                                .clip(CircleShape), // убрана тень и белая заливка
+                                .clip(CircleShape),
                             contentScale = ContentScale.Crop
                         )
                         

@@ -54,7 +54,7 @@ private val samplePosts = listOf(
         id = "1",
         title = "Новые групповые занятия по сальсе",
         description = "Приглашаем всех желающих на увлекательные уроки сальсы! Развивайте пластичность и ритм с нами.",
-        imageUrl = "https://images.unsplash.com/photo-1526947425960-945c6e72847b?auto=format&fit=crop&w=800&q=80",
+        imageUrl = "zumba",
         likes = 178,
         date = "3 часа назад"
     ),
@@ -62,7 +62,7 @@ private val samplePosts = listOf(
         id = "2",
         title = "Мастер-класс по хип-хопу",
         description = "Наш преподаватель Алексей провёл мощный мастер-класс по хип-хопу. Смотрите лучшие моменты в фотоотчёте!",
-        imageUrl = "https://images.unsplash.com/photo-1546484959-f2bb631dd160?auto=format&fit=crop&w=800&q=80",
+        imageUrl = "striptiz",
         likes = 142,
         date = "6 часов назад"
     ),
@@ -70,7 +70,7 @@ private val samplePosts = listOf(
         id = "3",
         title = "Приглашаем на открытые уроки по танго",
         description = "Испытайте страсть и эмоции аргентинского танго вместе с нами. Записывайтесь на бесплатные пробные занятия!",
-        imageUrl = "https://images.unsplash.com/photo-1508609349937-5ec4ae374ebf?auto=format&fit=crop&w=800&q=80",
+        imageUrl = "tango",
         likes = 210,
         date = "1 день назад"
     )
@@ -165,10 +165,14 @@ private fun PostCard(post: InstagramPost) {
             containerColor = MaterialTheme.colorScheme.surface
         )
     ) {
+        val context = LocalContext.current
+        val imageResId = remember(post.imageUrl) {
+            context.resources.getIdentifier(post.imageUrl, "drawable", context.packageName)
+        }
         Column {
             // Изображение
             AsyncImage(
-                model = post.imageUrl,
+                model = imageResId,
                 contentDescription = post.description,
                 modifier = Modifier
                     .fillMaxWidth()

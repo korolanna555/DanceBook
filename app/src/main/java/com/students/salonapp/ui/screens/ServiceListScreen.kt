@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.students.salonapp.data.models.Service
@@ -228,11 +229,15 @@ fun ServiceListScreen(
                                 containerColor = MaterialTheme.colorScheme.surface
                             )
                         ) {
+                            val context = LocalContext.current
+                            val imageResId = remember(service.image_url) {
+                                context.resources.getIdentifier(service.image_url, "drawable", context.packageName)
+                            }
                             Column(
                                 modifier = Modifier.fillMaxWidth()
                             ) {
                                 AsyncImage(
-                                    model = service.image_url,
+                                    model = imageResId,
                                     contentDescription = service.name,
                                     modifier = Modifier
                                         .fillMaxWidth()

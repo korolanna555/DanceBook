@@ -48,6 +48,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.students.salonapp.ui.theme.salonGreenOnPrimaryContainer
@@ -62,7 +63,7 @@ fun ShowcaseScreen(
             id = "4",
             title = "Современный джаз-фанк",
             description = "Энергичный танец с элементами хип-хопа и джаза, раскрывающий пластичность и ритм.",
-            imageUrl = "https://avatars.mds.yandex.net/get-altay/5437182/2a0000017a20b0dc510e1d5a17a8057387e6/XXXL",
+            imageUrl = "kizombi",
             category = "Танцы",
             master = "Александра Волкова",
             date = "2025-05-20"
@@ -71,7 +72,7 @@ fun ShowcaseScreen(
             id = "5",
             title = "Классический балет",
             description = "Уроки по основам балета: осанка, позиции и грация в движении.",
-            imageUrl = "https://avatars.mds.yandex.net/get-altay/4447702/2a0000017ba9c15f4525e51e40d073777bf5/XXXL",
+            imageUrl = "tango",
             category = "Танцы",
             master = "Ольга Сергеева",
             date = "2025-06-05"
@@ -80,7 +81,7 @@ fun ShowcaseScreen(
             id = "6",
             title = "Латина – сальса и бачата",
             description = "Зажигательные латинские ритмы, парные и сольные комбинации.",
-            imageUrl = "https://avatars.mds.yandex.net/i?id=79be1d2e84ef4d4f2d364faed2db68eec0c5dffb-10768194-images-thumbs&n=13",
+            imageUrl = "ladydance",
             category = "Танцы",
             master = "Дмитрий Орлов",
             date = "2025-06-12"
@@ -89,7 +90,7 @@ fun ShowcaseScreen(
             id = "7",
             title = "Хип-хоп для начинающих",
             description = "Базовые движения, ритмика и свобода самовыражения в танце.",
-            imageUrl = "https://avatars.mds.yandex.net/i?id=12a597dc22106c5a0b75e1b037b3b1d866f158b4-10372823-images-thumbs&n=13",
+            imageUrl = "striptiz",
             category = "Танцы",
             master = "Кирилл Егоров",
             date = "2025-06-18"
@@ -222,9 +223,13 @@ private fun WorkCard(
         ),
         onClick = onClick
     ) {
+        val context = LocalContext.current
+        val imageResId = remember(work.imageUrl) {
+            context.resources.getIdentifier(work.imageUrl, "drawable", context.packageName)
+        }
         Column {
             AsyncImage(
-                model = work.imageUrl,
+                model = imageResId,
                 contentDescription = work.title,
                 modifier = Modifier
                     .fillMaxWidth()

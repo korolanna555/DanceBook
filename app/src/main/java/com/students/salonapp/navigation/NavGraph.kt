@@ -282,8 +282,6 @@ fun SalonNavGraph(
                 onViewHelp = { navController.navigate("help_screen") },
                 onViewMap = { navController.navigate("map_search_screen") },
                 onLogout = {
-                    //  signOut (Supabase) попраавить код позже
-                    // SupabaseClientInstance.client.auth.signOut()
                 }
             )
         }

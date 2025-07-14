@@ -217,7 +217,7 @@ fun BookingHistoryScreen(
                             .padding(horizontal = 16.dp),
                         horizontalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
-                        listOf("Все", "Предстоящие", "Завершенные", "Отмененные").forEach { status ->
+                        listOf("Все", "Предстоящие", "Завершенные").forEach { status ->
                             FilterChip(
                                 selected = status == selectedStatus,
                                 onClick = { selectedStatus = status },
